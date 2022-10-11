@@ -1,0 +1,74 @@
+ [
+  {
+    "name":"Bray Wanderers",
+    "img":"https://i.pinimg.com/originals/f3/25/92/f32592767449cb089855763d6bed2554.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+    "name":"Leeds United",
+    "img":"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Leeds_United_F.C._logo.svg/1200px-Leeds_United_F.C._logo.svg.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+  "name":"St Pats",
+  "img":"https://upload.wikimedia.org/wikipedia/en/5/57/St._Patrick%27s_Athletic_F.C._crest.png",
+  "games":0,
+  "win":0,
+  "loss":0,
+  "draw":0,
+  "points":0
+},
+  {
+    "name":"Bradford City",
+    "img":"https://i.pinimg.com/originals/96/b5/f5/96b5f59da91e7527b2f08ec0f0736d00.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+    "name":"Dundee United",
+    "img":"https://upload.wikimedia.org/wikipedia/en/0/09/DUFCcrest2022.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+    "name":"Luton Town",
+    "img":"https://upload.wikimedia.org/wikipedia/ru/8/8b/LutonTownFC2009.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+    "name":"Plymouth Argyle",
+    "img":"https://upload.wikimedia.org/wikipedia/ru/3/38/Plymouth_Argyle_FC.svg",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  },
+  {
+    "name":"Aberdeen",
+    "img":"https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Aberdeen_FC_logo.svg/1200px-Aberdeen_FC_logo.svg.png",
+    "games":0,
+    "win":0,
+    "loss":0,
+    "draw":0,
+    "points":0
+  }
+]
