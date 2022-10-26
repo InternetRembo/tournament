@@ -2,8 +2,9 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { StyledBox } from "../../../styled/helpers/Box";
 import Flex from "../../../styled/helpers/Flex";
 import { Form } from "react-bootstrap";
-import { useAppSelector } from "../../../redux/hooks";
 import { TeamResults } from "./MatchModal";
+import staticTeamList from "../../../index.json";
+import { useAppSelector } from "../../../redux/hooks";
 
 type MatchResultFormProps = {
   setResult: Dispatch<SetStateAction<TeamResults>>;

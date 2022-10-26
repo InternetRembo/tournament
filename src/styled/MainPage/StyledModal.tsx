@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-export const StyledModal = styled.div`
+type ModalProps = {
+  height?: string;
+};
+
+export const StyledModal = styled.div<ModalProps>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 40%;
-  height: 500px;
+  height: ${(props) => props.height || "500px"};
   background-color: #292f33;
   color: white;
   box-shadow: #131212 1px 1px 2px 1px;

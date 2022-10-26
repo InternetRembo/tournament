@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { SetTableAC } from "../../../redux/reducers/tournamentTableReducer";
 
 type MatchModalProps = {
-  setModalTogler: (arg: boolean) => void;
+  setMatchModalToggler: (arg: boolean) => void;
 };
 
 export type TeamResults = {
@@ -18,7 +18,7 @@ export type TeamResults = {
   score: number | string;
 };
 
-const MatchModal = ({ setModalTogler }: MatchModalProps) => {
+const MatchModal = ({ setMatchModalToggler }: MatchModalProps) => {
   const dispatch = useAppDispatch();
   const teamList = useAppSelector(
     (state) => state.tournamentTableReducer.currentTable
@@ -66,35 +66,39 @@ const MatchModal = ({ setModalTogler }: MatchModalProps) => {
     const updatedFirstTeam = {
       ...firstTeam,
       games: firstTeam.games + 1,
-      points:
+      points: (firstTeam.points +=
         scoreCorrelation(firstTeamResult.score, secondTeamResult.score)
-          ?.points || 0,
-      win:
+          ?.points || 0),
+      win: (firstTeam.win +=
         scoreCorrelation(firstTeamResult.score, secondTeamResult.score)?.win ||
-        0,
-      loss:
+        0),
+      loss: (firstTeam.loss +=
         scoreCorrelation(firstTeamResult.score, secondTeamResult.score)?.loss ||
-        0,
-      draw:
+        0),
+      draw: (firstTeam.draw +=
         scoreCorrelation(firstTeamResult.score, secondTeamResult.score)?.draw ||
-        0,
+        0),
+      goalsDifference: (firstTeam.goalsDifference +=
+        +firstTeamResult.score - +secondTeamResult.score),
     };
 
     const updatedSecondTeam = {
       ...secondTeam,
       games: secondTeam.games + 1,
-      points:
+      points: (secondTeam.points +=
         scoreCorrelation(secondTeamResult.score, firstTeamResult.score)
-          ?.points || 0,
-      win:
+          ?.points || 0),
+      win: (secondTeam.win +=
         scoreCorrelation(secondTeamResult.score, firstTeamResult.score)?.win ||
-        0,
-      loss:
+        0),
+      loss: (secondTeam.loss +=
         scoreCorrelation(secondTeamResult.score, firstTeamResult.score)?.loss ||
-        0,
-      draw:
+        0),
+      draw: (secondTeam.draw +=
         scoreCorrelation(secondTeamResult.score, firstTeamResult.score)?.draw ||
-        0,
+        0),
+      goalsDifference: (secondTeam.goalsDifference +=
+        +secondTeamResult.score - +firstTeamResult.score),
     };
 
     const updatedTable = teamList.map((el, index) => {
@@ -120,7 +124,7 @@ const MatchModal = ({ setModalTogler }: MatchModalProps) => {
   return (
     <OutsideSpace
       onClick={() => {
-        setModalTogler(false);
+        setMatchModalToggler(false);
       }}
     >
       <StyledModal

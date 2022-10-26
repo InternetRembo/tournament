@@ -1,8 +1,14 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-export const StyledTableItem = styled.div`
- border-bottom: 1px solid grey;
+type StyledTableItemPros = {
+  bgColor: string;
+};
+
+export const StyledTableItem = styled.div<StyledTableItemPros>`
+  border-bottom: 1px solid grey;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 5px;
   margin: 5px;
   height: 46px;
 `;

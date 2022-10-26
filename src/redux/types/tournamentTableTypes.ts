@@ -8,6 +8,7 @@ export type LeagueType = {
   loss: number;
   draw: number;
   points: number;
+  goalsDifference: number;
 };
 
 export type TournamentTableState = {

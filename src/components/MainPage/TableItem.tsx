@@ -11,8 +11,17 @@ type TableItemProps = {
 };
 
 const TableItem = ({ data, position }: TableItemProps) => {
+  const backgroundOfRow = () => {
+    if (position === 1) {
+      return "rgba(255, 217, 0, 0.8)";
+    }
+    if (position > 1 && position <= 4) {
+      return "rgba(154,205,50,0.79)";
+    }
+    return "rgb(203,201,201)";
+  };
   return (
-    <StyledTableItem>
+    <StyledTableItem bgColor={backgroundOfRow()}>
       <Flex>
         <Text weight="bold" size="24px" margin="0 5px">
           {position}
@@ -23,20 +32,24 @@ const TableItem = ({ data, position }: TableItemProps) => {
         <StyledBox>
           <Text weight="bold"> {data.name} </Text>
         </StyledBox>
+
         <Flex justify="end">
-          <Text size="22px" margin="0 5px">
+          <Text size="22px" margin="0 10px">
             {data.games}
           </Text>
-          <Text size="22px" margin="0 5px">
+          <Text size="22px" margin="0 10px">
             {data.win}
           </Text>
-          <Text size="22px" margin="0 5px">
+          <Text size="22px" margin="0 10px">
             {data.loss}
           </Text>
-          <Text size="22px" margin=" 0 5px">
+          <Text size="22px" margin=" 0 10px">
             {data.draw}
           </Text>
-          <Text size="22px" margin="0 5px">
+          <Text size="22px" margin="0 10px">
+            {data.goalsDifference}
+          </Text>
+          <Text size="22px" margin="0 10px">
             {data.points}
           </Text>
         </Flex>
