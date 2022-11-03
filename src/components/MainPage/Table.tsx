@@ -8,16 +8,26 @@ import MatchModal from "./Modal/MatchModal";
 import Text from "../../styled/helpers/Text";
 import { StyledBox } from "../../styled/helpers/Box";
 import CorrectorModal from "./Modal/CorrectorModal";
+import { LeagueType } from "../../redux/types/tournamentTableTypes";
 
 const Table = () => {
   const [matchModalToggler, setMatchModalToggler] = useState(false);
   const [correctorModalToggler, setCorrectorModalToggler] = useState(false);
+  const [correctingTeam, setCorrectingTeam] = useState<LeagueType>({
+    draw: 0,
+    win: 0,
+    games: 0,
+    goalsDifference: 0,
+    loss: 0,
+    name: "DefaultTeam",
+    points: 0,
+    img: "https://www.nicepng.com/png/full/83-839617_png-file-sad-smiley-black-white.png",
+  });
 
   const teamList = useAppSelector(
     (state) => state.tournamentTableReducer.currentTable
   );
 
-  console.log("teamList", teamList);
   return (
     <StyledTable>
       <Flex width="100%" aling="center" justify="space-around">
@@ -27,14 +37,6 @@ const Table = () => {
           border="3px solid green"
         >
           Create match
-        </Button>
-
-        <Button
-          onClick={() => setCorrectorModalToggler(true)}
-          margin="10px"
-          border="3px solid green"
-        >
-          Corrector
         </Button>
 
         <StyledBox>
@@ -66,7 +68,10 @@ const Table = () => {
       ) : null}
 
       {correctorModalToggler ? (
-        <CorrectorModal setCorrectorModalToggler={setCorrectorModalToggler} />
+        <CorrectorModal
+          correctingTeam={correctingTeam}
+          setCorrectorModalToggler={setCorrectorModalToggler}
+        />
       ) : null}
 
       <Flex direction="column">
@@ -74,7 +79,15 @@ const Table = () => {
           .sort((x, y) => y.goalsDifference - x.goalsDifference)
           .sort((x, y) => y.points - x.points)
           .map((el, index) => {
-            return <TableItem key={el.name} data={el} position={index + 1} />;
+            return (
+              <TableItem
+                setCorrectingTeam={setCorrectingTeam}
+                setCorrectorModalToggler={setCorrectorModalToggler}
+                key={el.name}
+                data={el}
+                position={index + 1}
+              />
+            );
           })}
       </Flex>
     </StyledTable>

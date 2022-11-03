@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 
 type ButtonProps = {
-  children: string;
+  children: string | ReactElement;
   type?: "button" | "submit" | "reset" | undefined;
   width?: string;
   height?: string;
@@ -16,6 +16,7 @@ type ButtonProps = {
   position?: string;
   top?: string;
   left?: string;
+  shadow?: string;
 };
 
 export const StyledButton = styled.button<ButtonProps>`
@@ -29,7 +30,9 @@ export const StyledButton = styled.button<ButtonProps>`
   top: ${(props) => props.top || "0"};
   left: ${(props) => props.left || "0"};
   border-radius: 5px;
+  box-shadow: ${(props) => props.shadow || "0"};
   margin: ${(props) => props.margin || "20px , 0 , 0 , 0"};
+
   &:hover {
     background-color: ${(props) => props.hoverColor || "#ccff99;"};
   }

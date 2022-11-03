@@ -3,25 +3,39 @@ import {
   OutsideSpace,
   StyledModal,
 } from "../../../styled/MainPage/StyledModal";
-import { useAppSelector } from "../../../redux/hooks";
 import Flex from "../../../styled/helpers/Flex";
 import { Form } from "react-bootstrap";
 import { StyledBox } from "../../../styled/helpers/Box";
 import Button from "../../../styled/helpers/StyledButton";
 import CorrectorArea from "./CorrectorArea";
+import Text from "../../../styled/helpers/Text";
+import { LeagueType } from "../../../redux/types/tournamentTableTypes";
 
 type CorrectorModalProps = {
   setCorrectorModalToggler: (arg: boolean) => void;
+  correctingTeam: LeagueType;
 };
 
-const CorrectorModal = ({ setCorrectorModalToggler }: CorrectorModalProps) => {
-  const teamList = useAppSelector(
-    (state) => state.tournamentTableReducer.currentTable
-  );
+const CorrectorModal = ({
+  setCorrectorModalToggler,
+  correctingTeam,
+}: CorrectorModalProps) => {
 
-  const [team, setTeam] = useState<number | string>(0);
-  const [CorrectedData, setCorrectedData] = useState();
 
+  const [updatedTeamData, setUpdatedTeamData] =
+    useState<LeagueType>(correctingTeam);
+
+  const pushUpdatedData = () => {
+    const prevTableData = localStorage.getItem("BritishLeague");
+    const parsedPrevTableData = JSON.parse(prevTableData!);
+    const newTableData = parsedPrevTableData.map((el: LeagueType) => {
+      if (el.name === updatedTeamData.name) {
+        return updatedTeamData;
+      }
+      return el;
+    });
+    localStorage.setItem("BritishLeague", JSON.stringify(newTableData));
+  };
   return (
     <OutsideSpace
       onClick={() => {
@@ -29,7 +43,7 @@ const CorrectorModal = ({ setCorrectorModalToggler }: CorrectorModalProps) => {
       }}
     >
       <StyledModal
-        height="400px"
+        height="600px"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -40,61 +54,72 @@ const CorrectorModal = ({ setCorrectorModalToggler }: CorrectorModalProps) => {
           aling="center"
           height="100%"
         >
-          <Flex>
-            <Form.Select
-              onChange={(e) => {
-                setTeam(e.target.value);
-              }}
-              style={{ width: "40%", minHeight: "40px" }}
-              size="lg"
-              className="mb-3"
-              aria-label="Select a team"
-            >
-              {teamList.map((el, index) => {
-                return (
-                  <option value={index} key={el.name}>
-                    {el.name}
-                  </option>
-                );
-              })}
-            </Form.Select>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <StyledBox width="380px" padding="0 10px" margin="auto , 0">
-                <Flex justify="space-between">
-                  <CorrectorArea
-                    title={"G"}
-                    indication={teamList[+team].games}
-                  />
-                  <CorrectorArea title={"W"} indication={teamList[+team].win} />
-                  <CorrectorArea
-                    title={"L"}
-                    indication={teamList[+team].loss}
-                  />
-                  <CorrectorArea
-                    title={"D"}
-                    indication={teamList[+team].draw}
-                  />
-                  <CorrectorArea
-                    title={"GD"}
-                    indication={teamList[+team].goalsDifference}
-                  />
-                  <CorrectorArea
-                    title={"P"}
-                    indication={teamList[+team].points}
-                  />
-                </Flex>
-              </StyledBox>
-            </Form.Group>
+          <Flex aling="center" justify="center" width="300px" margin="0 5px">
+            <img
+              alt={"error"}
+              style={{ width: "300px" }}
+              src={correctingTeam.img}
+            />
           </Flex>
+          <Text color="white" size="32px">
+            {correctingTeam.name}
+          </Text>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <StyledBox width="380px" padding="0 10px" margin="auto , 0">
+              <Flex justify="space-between">
+                <CorrectorArea
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  parameter="games"
+                  title={"G"}
+                  value={correctingTeam.games}
+                />
+                <CorrectorArea
+                  title={"W"}
+                  parameter="win"
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  value={correctingTeam.win}
+                />
 
-          {/*<Flex direction="column">*/}
-          {/*  {teamList.map((el, index) => {*/}
-          {/*    return <div>wqe</div>;*/}
-          {/*  })}*/}
-          {/*</Flex>*/}
+                <CorrectorArea
+                  title={"L"}
+                  parameter="loss"
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  value={correctingTeam.loss}
+                />
 
+                <CorrectorArea
+                  title={"D"}
+                  parameter="draw"
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  value={correctingTeam.draw}
+                />
+
+                <CorrectorArea
+                  title={"GD"}
+                  parameter="goalsDifference"
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  value={correctingTeam.goalsDifference}
+                />
+
+                <CorrectorArea
+                  title={"P"}
+                  parameter="goalsDifference"
+                  setUpdatedTeamData={setUpdatedTeamData}
+                  updatedTeamData={updatedTeamData}
+                  value={correctingTeam.points}
+                />
+              </Flex>
+            </StyledBox>
+          </Form.Group>
           <Button
-            onClick={() => console.log(teamList)}
+            onClick={() => {
+              pushUpdatedData();
+            }}
             color="white"
             border="3px solid white"
             backgroundColor="#ff8000"

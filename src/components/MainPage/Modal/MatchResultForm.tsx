@@ -3,7 +3,6 @@ import { StyledBox } from "../../../styled/helpers/Box";
 import Flex from "../../../styled/helpers/Flex";
 import { Form } from "react-bootstrap";
 import { TeamResults } from "./MatchModal";
-import staticTeamList from "../../../index.json";
 import { useAppSelector } from "../../../redux/hooks";
 
 type MatchResultFormProps = {
@@ -32,9 +31,10 @@ const MatchResultForm = ({ result, setResult }: MatchResultFormProps) => {
           className="mb-3"
           aria-label="Select a team"
         >
-          {teamList.map((el, index) => {
+          <option>Сhoose a team</option>
+          {teamList.map((el) => {
             return (
-              <option value={index} key={el.name}>
+              <option value={el.name} key={el.name}>
                 {el.name}
               </option>
             );

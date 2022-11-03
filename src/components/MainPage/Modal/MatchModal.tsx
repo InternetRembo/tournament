@@ -24,19 +24,30 @@ const MatchModal = ({ setMatchModalToggler }: MatchModalProps) => {
     (state) => state.tournamentTableReducer.currentTable
   );
 
+  const selectedTeamIndex = (name: string) => {
+    return teamList.findIndex((el) => {
+      if (el.name === name) {
+        return true;
+      }
+    });
+  };
+
   const [firstTeamResult, setFirstTeamResult] = useState<TeamResults>({
     name: "",
-    score: -1,
+    score: 0,
   });
 
   const [secondTeamResult, setSecondTeamResult] = useState<TeamResults>({
     name: "",
-    score: -1,
+    score: 0,
   });
 
+  console.log("a", selectedTeamIndex(firstTeamResult.name));
+  console.log("b", firstTeamResult.name);
+
   const setUpdatedTableData = () => {
-    const firstTeam = teamList[+firstTeamResult.name];
-    const secondTeam = teamList[+secondTeamResult.name];
+    const firstTeam = teamList[selectedTeamIndex(firstTeamResult.name)];
+    const secondTeam = teamList[selectedTeamIndex(secondTeamResult.name)];
 
     const scoreCorrelation = (a: string | number, b: string | number) => {
       if (a > b) {
