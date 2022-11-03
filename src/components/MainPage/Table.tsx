@@ -6,7 +6,6 @@ import { useAppSelector } from "../../redux/hooks";
 import Button from "../../styled/helpers/StyledButton";
 import MatchModal from "./Modal/MatchModal";
 import Text from "../../styled/helpers/Text";
-import { StyledBox } from "../../styled/helpers/Box";
 import CorrectorModal from "./Modal/CorrectorModal";
 import { LeagueType } from "../../redux/types/tournamentTableTypes";
 
@@ -30,37 +29,39 @@ const Table = () => {
 
   return (
     <StyledTable>
-      <Flex width="100%" aling="center" justify="space-around">
+      <Flex width="100%" aling="center" justify="space-between">
         <Button
           onClick={() => setMatchModalToggler(true)}
+          weight="bold"
+          shadow="4px 4px 4px #777777"
           margin="10px"
-          border="3px solid green"
+          color="white"
+          backgroundColor="#ff8000"
+          hoverColor="#ff661a"
         >
           Create match
         </Button>
 
-        <StyledBox>
-          <Flex justify="flex-end">
-            <Text size="20px" margin="0 8px">
-              G
-            </Text>
-            <Text size="20px" margin="0 8px">
-              W
-            </Text>
-            <Text size="20px" margin="0 8px">
-              L
-            </Text>
-            <Text size="20px" margin="0 8px">
-              D
-            </Text>
-            <Text size="20px" margin="0 8px">
-              GD
-            </Text>
-            <Text size="20px" margin="0 8px">
-              P
-            </Text>
-          </Flex>
-        </StyledBox>
+        <Flex width="240px" justify="space-between">
+          <Text size="28px" margin="0 10px">
+            G
+          </Text>
+          <Text size="28px" margin="0 10px">
+            W
+          </Text>
+          <Text size="28px" margin="0 10px">
+            L
+          </Text>
+          <Text size="28px" margin="0 10px">
+            D
+          </Text>
+          <Text size="28px" margin="0 10px">
+            GD
+          </Text>
+          <Text size="28px" margin="0 10px">
+            P
+          </Text>
+        </Flex>
       </Flex>
 
       {matchModalToggler ? (

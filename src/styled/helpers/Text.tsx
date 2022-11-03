@@ -5,7 +5,7 @@ type TextProps = {
   size?: string;
   weight?: string;
   style?: string;
-  famaly?: string;
+  family?: string;
   color?: string;
   margin?: string;
   decoration?: string;
@@ -25,7 +25,7 @@ const StyledText = styled.span<TextProps>`
   font-size: ${(props) => props.size || "18px"};
   font-weight: ${(props) => props.weight || "normal"};
   font-style: ${(props) => props.style || "normal"};
-  font-family: ${(props) => props.famaly || "Alef"};
+  font-family: ${(props) => props.family || "Alef"};
   color: ${(props) => props.color || " black"};
   margin: ${(props) => props.margin || "0"};
   text-decoration: ${(props) => props.decoration || "none"};

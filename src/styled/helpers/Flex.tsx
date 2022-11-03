@@ -8,6 +8,7 @@ export type FlexProps = {
   margin?: string;
   width?: string;
   height?: string;
+  textAling?: string;
   children?:
     | ReactElement
     | ReactElement[]
@@ -21,6 +22,7 @@ const StyledFlex = styled.div<FlexProps>`
   flex-direction: ${(props) => props.direction || "row"};
   align-items: ${(props) => props.aling || "stretch"};
   justify-content: ${(props) => props.justify || "stretch"};
+  text-align: ${(props) => props.textAling || "start"};
   margin: ${({ margin }) => margin || "0"};
   width: ${({ width }) => width || "100%"};
   height: ${({ height }) => height || "none"};

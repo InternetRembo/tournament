@@ -20,8 +20,6 @@ const CorrectorModal = ({
   setCorrectorModalToggler,
   correctingTeam,
 }: CorrectorModalProps) => {
-
-
   const [updatedTeamData, setUpdatedTeamData] =
     useState<LeagueType>(correctingTeam);
 
@@ -74,6 +72,7 @@ const CorrectorModal = ({
                   title={"G"}
                   value={correctingTeam.games}
                 />
+
                 <CorrectorArea
                   title={"W"}
                   parameter="win"
@@ -108,7 +107,7 @@ const CorrectorModal = ({
 
                 <CorrectorArea
                   title={"P"}
-                  parameter="goalsDifference"
+                  parameter="points"
                   setUpdatedTeamData={setUpdatedTeamData}
                   updatedTeamData={updatedTeamData}
                   value={correctingTeam.points}
